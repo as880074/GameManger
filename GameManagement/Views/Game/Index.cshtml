@@ -1,0 +1,136 @@
+@model IEnumerable<GameManagement.Models.Game>
+
+<!-- 遊戲管理標題 -->
+<div class="mb-3">
+    <h2>遊戲管理</h2>
+</div>
+
+<!-- 搜尋欄和按鈕 -->
+<div class="mb-3">
+    <div class="row">
+        <!-- 名稱查詢 -->
+        <div class="col-md-3 d-flex align-items-center">
+            <label for="searchName" class="me-2" style="min-width: 70px;">名稱</label>
+            <input type="text" id="searchName" class="form-control" placeholder="名稱"/>
+        </div>
+
+        <!-- Email 查詢 -->
+        <div class="col-md-3 d-flex align-items-center">
+            <label for="searchEmail" class="me-2" style="min-width: 70px;">Email</label>
+            <input type="text" id="searchEmail" class="form-control" placeholder="Email"/>
+        </div>
+
+        <!-- 創建時間查詢 -->
+        <div class="col-md-3 d-flex align-items-center">
+            <label for="searchCreatedAt" class="me-2" style="min-width: 70px;">創建時間</label>
+            <input type="date" id="searchCreatedAt" class="form-control"/>
+        </div>
+
+        <!-- 搜尋按鈕 -->
+        <div class="col-md-3 d-flex align-items-center">
+            <button class="btn btn-primary ms-2">
+                <i class="bi bi-search"></i> 搜尋
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="mb-3 d-flex justify-content-end">
+    <!-- 新增按鈕，前面有一個 "add" 的圖示 -->
+    <a href="/Game/Create" class="btn btn-success me-2">
+        <i class="bi bi-plus-lg me-1"></i> 新增
+    </a>
+
+    <!-- 重整按鈕，前面有一個 "refresh" 的圖示 -->
+    <button class="btn btn-secondary">
+        <i class="bi bi-arrow-clockwise me-1"></i> 重整
+    </button>
+</div>
+
+<!-- 遊戲列表表格 -->
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>編輯</th>
+        <th>檢視</th>
+        <th>商戶名稱</th>
+        <th>經營模式</th>
+        <th>商戶 ID</th>
+        <th>Email</th>
+        <th>創建時間</th>
+        <th>備註</th>
+        <th>刪除</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var game in Model)
+    {
+    <tr>
+        <!-- 編輯按鈕 -->
+        <td>
+            <a href="/Game/Edit/@game.Id" class="btn btn-warning btn-sm">
+                <i class="bi bi-pencil"></i>
+            </a>
+        </td>
+
+        <!-- 檢視按鈕 -->
+        <td>
+            <a href="/Game/Details/@game.Id" class="btn btn-info btn-sm">
+                <i class="bi bi-book"></i>
+            </a>
+        </td>
+
+        <!-- 商戶名稱 -->
+        <td>@game.Name</td>
+
+        <!-- 經營模式（自營、合夥、授權） -->
+        <td>@game.Merchant</td>
+
+        <!-- 商戶 ID -->
+        <td>@game.GameType</td>
+
+        <!-- Email -->
+        <td>@game.Email</td>
+
+        <!-- 創建時間 -->
+        <td>@game.CreatedAt.ToString("yyyy/MM/dd HH:mm")</td>
+
+        <!-- 備註 -->
+        <td>@game.Remarks</td>
+
+        <!-- 刪除按鈕 -->
+        <!-- 刪除按鈕，觸發 Bootstrap Modal -->
+        <td>
+            <!-- 按鈕用來打開 Modal -->
+            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-@game.Id">
+                <i class="bi bi-trash"></i>
+            </button>
+
+            <!-- Bootstrap Modal -->
+            <div class="modal fade" id="deleteModal-@game.Id" tabindex="-1" aria-labelledby="deleteModalLabel-@game.Id" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel-@game.Id">確認刪除</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            你確定要刪除這個遊戲嗎？此操作無法撤銷。
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+
+                            <!-- 真正的刪除表單提交 -->
+                            <form asp-action="Delete" asp-controller="Game" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@game.Id" />
+                                <button type="submit" class="btn btn-danger">確定刪除</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>

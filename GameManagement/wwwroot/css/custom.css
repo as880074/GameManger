@@ -1,0 +1,53 @@
+/* 全域 Header 調整 */
+header {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+}
+
+/* 左側導航欄調整 */
+#sidebarMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    padding-top: 3rem;
+    border-right: 1px solid #ddd;
+    background-color: #f8f9fa;
+}
+
+#sidebarMenu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#sidebarMenu ul li {
+    padding: 0.5rem 1rem;
+}
+
+#sidebarMenu ul li a {
+    color: #333;
+    text-decoration: none;
+}
+
+#sidebarMenu ul li a.active {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* 主內容區域調整 */
+main {
+    margin-left: 250px; /* 調整以適應側邊欄 */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* 調整表格樣式 */
+table {
+    width: 100%;
+    margin-top: 1rem;
+}
+me-2 {
+    display: flex;
+}

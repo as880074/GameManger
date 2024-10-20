@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets/GameManagement.bundle.scp.css"
     },
     {
+      "Id": "/Users/smart/Documents/Practice/GameManger/GameManagement/wwwroot/css/custom.css",
+      "PackagePath": "staticwebassets/css/custom.css"
+    },
+    {
       "Id": "/Users/smart/Documents/Practice/GameManger/GameManagement/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },

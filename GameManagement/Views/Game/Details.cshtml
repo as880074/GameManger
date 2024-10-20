@@ -1,0 +1,76 @@
+@model GameManagement.Models.Game
+
+<h2 class="mb-4">遊戲詳細資訊</h2>
+
+<div class="container">
+    <!-- 名稱 -->
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">名稱:</label>
+        <div class="col-sm-10">
+            <p class="form-control-plaintext">@Model.Name</p>
+        </div>
+    </div>
+
+    <!-- 商戶名稱 -->
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">商戶名稱:</label>
+        <div class="col-sm-10">
+            <p class="form-control-plaintext">@Model.Merchant</p>
+        </div>
+    </div>
+
+    <!-- 遊戲類型 -->
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">遊戲類型:</label>
+        <div class="col-sm-10">
+            <p class="form-control-plaintext">@Model.GameType</p>
+        </div>
+    </div>
+
+    <!-- 使用者 ID -->
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">使用者 ID:</label>
+        <div class="col-sm-10">
+            <p class="form-control-plaintext">@Model.UserId</p>
+        </div>
+    </div>
+
+    <!-- Email -->
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Email:</label>
+        <div class="col-sm-10">
+            <p class="form-control-plaintext">@Model.Email</p>
+        </div>
+    </div>
+
+    <!-- 創建時間 -->
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">創建時間:</label>
+        <div class="col-sm-10">
+            <p class="form-control-plaintext">@Model.CreatedAt.ToString("yyyy/MM/dd HH:mm")</p>
+        </div>
+    </div>
+
+    <!-- 狀態 -->
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">狀態:</label>
+        <div class="col-sm-10">
+            <p class="form-control-plaintext">@Model.Status</p>
+        </div>
+    </div>
+
+    <!-- 備註 -->
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">備註:</label>
+        <div class="col-sm-10">
+            <p class="form-control-plaintext">@Model.Remarks</p>
+        </div>
+    </div>
+
+    <!-- 返回按鈕 -->
+    <div class="row">
+        <div class="col-sm-10 offset-sm-2">
+            <a asp-action="Index" class="btn btn-secondary">返回</a>
+        </div>
+    </div>
+</div>

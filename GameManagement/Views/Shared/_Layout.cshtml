@@ -6,44 +6,64 @@
     <title>@ViewData["Title"] - GameManagement</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/GameManagement.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" /> <!-- 自訂樣式 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet"> <!-- Bootstrap Icons -->
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GameManagement</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+
+<!-- 最上方的 Header -->
+<header class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid d-flex justify-content-between">
+        <!-- LOGO -->
+        <div class="d-flex align-items-center">
+            <button class="btn btn-outline-dark me-3"><i class="bi bi-list"></i></button>
+            <a class="navbar-brand" href="#">系統管理後台</a>
+        </div>
+
+        <!-- 右上角的圖示 -->
+        <div class="d-flex align-items-center">
+            <i class="bi bi-bell fs-4 me-4"></i>
+            <i class="bi bi-person fs-4"></i>
+        </div>
+    </div>
+</header>
+
+<!-- 左側導航欄 + 主內容區 -->
+<div class="container-fluid">
+    <div class="row">
+        <!-- 左側的側邊欄 -->
+        <nav id="sidebarMenu" class="col-md-2 d-md-block bg-light sidebar">
+            <div class="position-sticky">
+                <ul class="nav flex-column pt-3">
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Home" ? "active" : "")" href="#">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Game" ? "active" : "")" asp-controller="Game" asp-action="Index">遊戲管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Player" ? "active" : "")" href="#">玩家系列賬號管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Merchant" ? "active" : "")" href="#">商戶管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Transaction" ? "active" : "")" href="#">點數和異動管理</a>
+                    </li>
+                </ul>
             </div>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
+
+        <!-- 主內容區域 -->
+        <main class="col-md-10 ms-sm-auto px-md-4">
+            @RenderBody() <!-- 渲染子頁面主要內容 -->
         </main>
     </div>
+</div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - GameManagement - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
